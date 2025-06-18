@@ -1,4 +1,5 @@
-```Copyright © 2025 Arnav M.
+```
+Copyright © 2025 Arnav M.
 
 This software is registered with the Copyright Office, Government of India
 under the Copyright Act, 1957.
