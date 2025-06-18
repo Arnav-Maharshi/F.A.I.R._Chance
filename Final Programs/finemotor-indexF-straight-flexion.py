@@ -51,6 +51,32 @@ def smooth_landmarks(landmarks, prev_landmarks, alpha):
         smoothed_landmarks.append(smoothed)
     return np.array(smoothed_landmarks)
 
+def draw_gradient_progress_bar(img, progress, bar_pos=(50, 50), bar_size=(400, 30)):
+    x, y = bar_pos
+    width, height = bar_size
+    filled_width = int((progress / 100) * width)
+
+    # Background bar (gray)
+    cv2.rectangle(img, (x, y), (x + width, y + height), (50, 50, 50), -1)
+
+    # Gradient fill
+    for i in range(filled_width):
+        ratio = progress/100 # OR this-> i / width 
+        r = int(255 * (1.27 - ratio))
+        g = int(255 * (0.25 + ratio))
+        b = 0
+        cv2.line(img, (x + i, y), (x + i, y + height), (b, g, r), 1)
+
+    # Border
+    cv2.rectangle(img, (x, y), (x + width, y + height), (255, 255, 255), 2)
+
+    # Text
+    cv2.putText(img, f"{int(progress)}%", (x + width + 10, y + height - 5),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+
+    return img
+
+
 
 #MP_score = None
 # Measuring and displaying angles at index finger joints (MP, PIP, DIP)
@@ -89,6 +115,7 @@ def indexF(image, results):
 
                 # Calculating independent MP accuracy score
                 MP_score = round((round_angle*100)/77.0) # Correct MP flexion range: 67-77 degrees
+                MP_score = max(0, min(MP_score, 100))
                 MP_score_list.append(MP_score) 
 
             # Reserving PIP joint values
@@ -122,6 +149,8 @@ def indexF(image, results):
             angle_text = '{} {}: {}'.format(hand_label, joint_name, round_angle) # Angle measurement at joint
             score_text = '{} Accuracy Score: {} %'.format(hand_label, MP_score)
             joint_coord = tuple(np.multiply(b, [frame_width, frame_height]).astype(int)) # Main joint coordinates
+
+            draw_gradient_progress_bar(image, MP_score)  # Clamp progress to [0, 100]
 
             cv2.putText(image, angle_text, joint_coord, 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
