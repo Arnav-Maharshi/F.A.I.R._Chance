@@ -61,7 +61,8 @@ F.A.I.R. Chance© helps:
 ---
 
 ## **License**
-`Copyright © 2025 Arnav M.
+```
+Copyright © 2025 Arnav M.
 
 This software is registered with the Copyright Office, Government of India
 under the Copyright Act, 1957.
@@ -76,4 +77,3 @@ THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPL
 IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 For licensing inquiries, please contact: [arnavmaharshi@gmail.com]
-`
