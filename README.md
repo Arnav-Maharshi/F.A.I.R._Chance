@@ -5,7 +5,7 @@
 ---
 
 ***This software is officially copyrighted under Indian law.
-See `LICENSE.md` for registration details.***
+See `LICENSE` for registration details.***
 
 ---
 
